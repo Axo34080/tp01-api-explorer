@@ -4,6 +4,7 @@
 
 Réaliser le TP 01 : explorateur PokéAPI en React, TypeScript et Zod.
 Les trois PDF du cours sont dans le dossier parent :
+
 - `TP_01_-_React_&_API.pdf` : exigences et paliers du rendu.
 - `01_-_React_et_TypeScript___Architecture,_composants_et_gestion_d'état.pdf` : architecture, composants, état, KISS.
 - `00_-_Fondations_avancées___JS_runtime_&_TypeScript.pdf` : runtime, strict, unknown, modélisation.
@@ -35,7 +36,7 @@ Respecter la demande courante de l’utilisateur, puis les exigences du TP. Le c
 
 ## PokéAPI
 
-Documentation : https://pokeapi.co/docs/v2/ . Pas d’authentification ni de backend requis.
+Documentation : <https://pokeapi.co/docs/v2/> . Pas d’authentification ni de backend requis.
 Utiliser les endpoints de détail et de liste ; ne pas télécharger tout le Pokédex au démarrage. Respecter la politique de cache des ressources lors de l’implémentation des appels.
 Ne pas présumer que les noms français sont acceptés par l’endpoint de détail. Définir explicitement le comportement de recherche lors du palier 1.
 Ne jamais committer `.env` ou un secret. Les variables `VITE_*` sont publiques dans le bundle.
