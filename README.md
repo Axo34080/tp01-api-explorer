@@ -1,6 +1,10 @@
-# Explorateur de Pokémon
+# Guide d’évolution Pokémon
 
-TP 01 — React, TypeScript et API. Socle initial uniquement ; aucun palier fonctionnel terminé.
+TP 01 — React, TypeScript et Zod avec PokéAPI. La recherche et la fiche Pokémon sont implémentées jusqu’à l’étape F du guide. L’affichage des familles d’évolution reste à développer.
+
+## Utilisation actuelle
+
+Saisir un nom anglais (par exemple `pikachu`) ou un numéro (`25`), puis soumettre le formulaire. La fiche affiche le numéro, le nom, l’image disponible et les types. Les espaces autour et la casse sont normalisés. Une recherche introuvable ou échouée affiche une erreur.
 
 ## Démarrer
 
@@ -28,7 +32,7 @@ Cette commande exécute le lint, le typage de l’application et de Vite, puis l
 [PokéAPI v2](https://pokeapi.co/docs/v2/) : accès public sans clé.
 Détail : `https://pokeapi.co/api/v2/pokemon/{id-or-name}/`.
 Liste : `https://pokeapi.co/api/v2/pokemon?limit=20&offset=0`.
-Respecter la politique de cache de l’API. Zod est installé pour valider les réponses au moment de leur intégration.
+Les réponses de détail sont validées avec Zod avant affichage et mises en cache en mémoire par nom et numéro. Ce cache dure jusqu’au rechargement de la page. La liste paginée n’est pas encore intégrée.
 Aucun `.env` nécessaire ; `.env.example` documente cette absence de configuration.
 
 ## Organisation
@@ -39,22 +43,29 @@ Aucun `.env` nécessaire ; `.env.example` documente cette absence de configurati
 - `src/types/` : interfaces, schémas et types partagés.
 
 Consignes de développement : `AGENTS.md`.
+Guide de réalisation manuelle et exemples expliqués : `PLAN.md`.
+L’alias `@/` pointe vers `src/` dans TypeScript et Vite.
+
+Composants actuels : `PokemonSearch`, `PokemonCard` et son enfant `PokemonType`. La logique de recherche est encore dans `src/app/App.tsx`.
 
 ## Avancement
 
 - Configuration initiale : React, Vite, TypeScript strict, Zod, Oxlint et Git local.
-- Palier 1 à réaliser : recherche, fiche avec composant enfant, chargement et erreurs.
+- Palier 1 implémenté (étape F) : recherche, fiche avec composant enfant, chargement et erreurs, validation Zod.
+- Déjà présents : cache des réponses en mémoire, annulation avec `AbortController` et protection contre les réponses obsolètes.
+- Prochaine étape G : extraire la logique de recherche dans `src/hooks/usePokemon.ts` sans changer son comportement.
 - Palier 2 à réaliser : liste paginée, sélection et détail.
-- Bonus à réaliser : hook, cache du dernier résultat, annulation et relations imbriquées.
+- Guide d’évolution à réaliser : chargement de l’espèce et de sa chaîne, affichage des branches et sélection d’une évolution.
+
+## Vérifications
+
+- `npm run check` exécuté avec succès après l’étape F : lint, typage de l’application et de Vite, build.
+- Test navigateur confirmé par l’utilisateur : recherche par nom et numéro, affichage du Pokémon et de ses types.
+- Parcours restant à confirmer dans le navigateur : nom inexistant, saisie vide, panne réseau, image absente et recherches rapides successives.
 
 ## Dépôt distant
 
-Le dépôt local utilise `main`. Le dépôt GitHub/GitLab et son URL restent à configurer.
-Après création du dépôt `tp01-api-explorer` sur le compte souhaité :
+Le remote `origin` est configuré vers [Axo34080/tp01-api-explorer](https://github.com/Axo34080/tp01-api-explorer).
+Le travail en cours est sur la branche `Dev`. Le TP demande que le rendu final soit disponible sur `main` ; la présence des derniers changements sur le dépôt distant n’a pas été vérifiée ici.
 
-```sh
-git remote add origin <URL_DU_DEPOT>
-git push -u origin main
-```
-
-Rendu attendu : URL du dépôt avec ce README mis à jour. Commits réguliers, messages en anglais à l’impératif.
+Rendu attendu : URL du dépôt avec ce README mis à jour. Commits réguliers, messages en anglais à l’impératif. Aucun push ou merge automatique.

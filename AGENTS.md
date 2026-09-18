@@ -11,7 +11,9 @@ Les trois PDF du cours sont dans le dossier parent :
 
 Respecter la demande courante de l’utilisateur, puis les exigences du TP. Le cours est la référence technique principale ; les principes Ponytail et Karpathy ci-dessous complètent ces exigences. Un exemple pédagogique n’est pas une obligation d’implémenter une fonctionnalité. Signaler les contradictions avant de choisir une solution qui affecte le rendu.
 
-État initial : configuration uniquement. Ne développer les paliers que sur demande. Ne pas migrer vers Next.js : il concerne un TP ultérieur.
+Projet : guide d’évolution Pokémon. Étape F réalisée : recherche par nom anglais ou numéro, fiche et types, validation Zod, états explicites, cache en mémoire et annulation des requêtes. La logique de recherche est encore dans `src/app/App.tsx` ; la prochaine étape prévue est son extraction dans `src/hooks/usePokemon.ts` (G), sans changement de comportement.
+
+L’utilisateur écrit les composants lui-même à partir de `PLAN.md`. Préserver son travail et ne pas implémenter les étapes suivantes sans demande. Ne pas migrer vers Next.js : il concerne un TP ultérieur. Le README suit l’avancement et distingue fonctionnalités implémentées et parcours effectivement vérifiés.
 
 ## TypeScript et Zod
 
@@ -26,6 +28,7 @@ Respecter la demande courante de l’utilisateur, puis les exigences du TP. Le c
 ## Architecture et React
 
 - Respecter `src/app/`, `src/components/`, `src/services/`, `src/types/`.
+- L’alias `@/` pointe vers `src/`, configuré dans TypeScript et Vite. Le composant de types existant se nomme `PokemonType.tsx` (au singulier) ; respecter ce nom dans les imports.
 - Un composant par fichier ; props déclarées avec une interface nommée sur le paramètre. `children` explicite si nécessaire. Ne pas utiliser `React.FC`.
 - Composer des composants imbriqués ; chaque enfant reçoit seulement ses données utiles.
 - Aucun `fetch` dans un composant : réseau dans `services/`, contrôle de `response.ok`, erreur compréhensible et données validées en sortie.
@@ -38,7 +41,7 @@ Respecter la demande courante de l’utilisateur, puis les exigences du TP. Le c
 
 Documentation : <https://pokeapi.co/docs/v2/> . Pas d’authentification ni de backend requis.
 Utiliser les endpoints de détail et de liste ; ne pas télécharger tout le Pokédex au démarrage. Respecter la politique de cache des ressources lors de l’implémentation des appels.
-Ne pas présumer que les noms français sont acceptés par l’endpoint de détail. Définir explicitement le comportement de recherche lors du palier 1.
+La recherche actuelle accepte un nom anglais ou un numéro, retire les espaces autour et normalise la casse. La recherche par nom français n’est pas implémentée.
 Ne jamais committer `.env` ou un secret. Les variables `VITE_*` sont publiques dans le bundle.
 
 ## Ponytail : simplicité sans sacrifier la correction
