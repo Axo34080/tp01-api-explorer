@@ -1,6 +1,6 @@
 # Guide d’évolution Pokémon
 
-TP 01 — React, TypeScript et Zod avec PokéAPI. La recherche et la fiche Pokémon sont implémentées jusqu’à l’étape F du guide. L’affichage des familles d’évolution reste à développer.
+TP 01 — React, TypeScript et Zod avec PokéAPI. La recherche et la fiche Pokémon sont implémentées jusqu’à l’étape G du guide. L’affichage des familles d’évolution reste à développer.
 
 ## Utilisation actuelle
 
@@ -39,6 +39,7 @@ Aucun `.env` nécessaire ; `.env.example` documente cette absence de configurati
 
 - `src/app/` : application et layout.
 - `src/components/` : composants React.
+- `src/hooks/` : logique React de recherche et état associé.
 - `src/services/` : appels réseau et validation des données externes.
 - `src/types/` : interfaces, schémas et types partagés.
 
@@ -46,20 +47,20 @@ Consignes de développement : `AGENTS.md`.
 Guide de réalisation manuelle et exemples expliqués : `PLAN.md`.
 L’alias `@/` pointe vers `src/` dans TypeScript et Vite.
 
-Composants actuels : `PokemonSearch`, `PokemonCard` et son enfant `PokemonType`. La logique de recherche est encore dans `src/app/App.tsx`.
+Composants actuels : `PokemonSearch`, `PokemonCard` et son enfant `PokemonType`. La logique de recherche est dans `src/hooks/usePokemon.ts` ; `App` compose les composants et affiche l’état retourné.
 
 ## Avancement
 
 - Configuration initiale : React, Vite, TypeScript strict, Zod, Oxlint et Git local.
 - Palier 1 implémenté (étape F) : recherche, fiche avec composant enfant, chargement et erreurs, validation Zod.
 - Déjà présents : cache des réponses en mémoire, annulation avec `AbortController` et protection contre les réponses obsolètes.
-- Prochaine étape G : extraire la logique de recherche dans `src/hooks/usePokemon.ts` sans changer son comportement.
+- Étape G réalisée : logique de recherche extraite dans `src/hooks/usePokemon.ts`, sans changement de comportement.
 - Palier 2 à réaliser : liste paginée, sélection et détail.
 - Guide d’évolution à réaliser : chargement de l’espèce et de sa chaîne, affichage des branches et sélection d’une évolution.
 
 ## Vérifications
 
-- `npm run check` exécuté avec succès après l’étape F : lint, typage de l’application et de Vite, build.
+- `npm run check` exécuté avec succès après l’étape G : lint, typage de l’application et de Vite, build. Les parcours navigateur n’ont pas été rejoués après cette extraction.
 - Test navigateur confirmé par l’utilisateur : recherche par nom et numéro, affichage du Pokémon et de ses types.
 - Parcours restant à confirmer dans le navigateur : nom inexistant, saisie vide, panne réseau, image absente et recherches rapides successives.
 
