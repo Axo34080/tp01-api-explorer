@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { getPokemon } from "@/services/pokemon";
 import type { Pokemon } from "@/types/pokemon";
 
@@ -40,10 +40,10 @@ export default function usePokemon() {
     };
   }, [request]);
 
-  function search(query: string) {
+  const search = useCallback((query: string) => {
     setState({ status: "loading" });
     setRequest({ query });
-  }
+  }, []);
 
   return { state, search };
 }
