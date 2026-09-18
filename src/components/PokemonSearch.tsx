@@ -1,33 +1,37 @@
 import { useState } from "react";
-import type { SubmitEvent } from 'react';
+import type { SubmitEvent } from "react";
 
 interface PokemonSearchProps {
-    onSearch: (query: string) => void;
-    isLoading: boolean;
+  onSearch: (query: string) => void;
+  isLoading: boolean;
 }
 
-export default function PokemonSearch({ onSearch, isLoading }: PokemonSearchProps) {
-    const [query, setQuery] = useState('');
+export default function PokemonSearch({
+  onSearch,
+  isLoading,
+}: PokemonSearchProps) {
+  const [query, setQuery] = useState("");
 
-    function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
-        event.preventDefault();
-        const value = query.trim();
-        if (value) onSearch(value);
-    }
+  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const value = query.trim();
+    if (value) onSearch(value);
+  }
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="pokemon-search">Rechercher un Pokémon :</label>
-            <input
-                id="pokemon-search"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="Nom ou ID du Pokémon"
-                required
-            />
-            <button type="submit" disabled={!query.trim()}>
-                {isLoading ? 'Recherche en cours...' : 'Rechercher'}
-            </button>
-        </form>
-    )
+  return (
+    <form className="search-form" onSubmit={handleSubmit}>
+      <label htmlFor="pokemon-search">Rechercher un Pokémon :</label>
+      <input
+        id="pokemon-search"
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+        placeholder="Nom ou ID du Pokémon"
+        required
+      />
+      <button type="submit" disabled={!query.trim()}>
+        {isLoading ? "Nouvelle recherche" : "Rechercher"}{" "}
+        <span aria-hidden="true">→</span>
+      </button>
+    </form>
+  );
 }

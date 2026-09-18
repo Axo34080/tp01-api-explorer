@@ -7,8 +7,8 @@ interface EvolutionNodeProps {
 
 export default function EvolutionNode({ evolution, onSelect }: EvolutionNodeProps) {
     return (
-        <li>
-            <button type="button" onClick={() => onSelect(evolution.species.url)}>
+        <li className="evolution-node">
+            <button className="evolution-button" type="button" onClick={() => onSelect(evolution.species.url)}>
                 {evolution.species.name}
             </button>
             {evolution.evolves_to.length > 0 && (
